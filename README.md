@@ -59,9 +59,8 @@ Getting a new customer costs 5–7x more than keeping an existing one. So predic
 ## Author
 Niranjan vishe
 
-GitHub: @Nir-bitcoin
-
-LinkedIn: nirvishe
+GitHub: [@Nir-bitcoin](https://github.com/Nir-bitcoin)
+LinkedIn: [nirvishe](https://www.linkedin.com/in/nirvishe)
 
 ## How to Run
 
