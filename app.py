@@ -17,7 +17,7 @@ st.markdown("---")
 # Load model
 @st.cache_resource
 def load_model():
-    return joblib.load("models/churn_model.pkl")
+   return joblib.load("churn_model.pkl")
 
 try:
     model = load_model()
