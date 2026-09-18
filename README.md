@@ -1,4 +1,4 @@
- **[Live Demo →](https://customer-churn-predictor-28z3.onrender.com)**
+ **[Try The Live Demo →](https://customer-churn-predictor-28z3.onrender.com)**
 # Customer Churn Predictor
 
 A machine learning project that predicts which telecom customers are about to leave — so the business can keep them before it's too late.
