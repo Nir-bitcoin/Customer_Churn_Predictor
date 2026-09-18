@@ -55,6 +55,14 @@ Getting a new customer costs 5–7x more than keeping an existing one. So predic
 ![ROC Curve](images/roc_curve.png)
 ![SHAP Importance](images/shap_importance.png)
 
+
+## Author
+Niranjan vishe
+
+GitHub: @Nir-bitcoin
+
+LinkedIn: nirvishe
+
 ## How to Run
 
 ```bash
@@ -63,9 +71,4 @@ cd Customer_Churn_Predictor
 pip install -r requirements.txt
 jupyter notebook notebooks/customer_churn_analysis.ipynb
 
-Author
-Niranjan vishe
 
-GitHub: @Nir-bitcoin
-
-LinkedIn: nirvishe
