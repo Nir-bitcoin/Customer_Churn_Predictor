@@ -1,13 +1,15 @@
 import os
+
 os.environ["STREAMLIT_SERVER_PORT"] = os.environ.get("PORT", "8501")
 os.environ["STREAMLIT_SERVER_ADDRESS"] = "0.0.0.0"
-os.environ["STREAMLIT_SERVER_HEADLESS"] = "true"import streamlit as st
+os.environ["STREAMLIT_SERVER_HEADLESS"] = "true"
+
+import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
 import shap
 import matplotlib.pyplot as plt
-
 
 st.set_page_config(
     page_title="Customer Churn Predictor",
@@ -24,18 +26,20 @@ header {visibility: hidden;}
 """
 st.markdown(hide_style, unsafe_allow_html=True)
 
-
 st.title("🔮 Customer Churn Predictor")
-st.write("Predict which telecom customers are at risk of churning — and understand **why**.")
+st.write("Predict which telecom customers are at risk of churning — and understand why.")
 st.markdown("---")
+
 
 @st.cache_resource
 def load_model():
     return joblib.load("churn_model.pkl")
 
+
 @st.cache_resource
 def load_explainer(_model):
     return shap.TreeExplainer(_model.named_steps["clf"])
+
 
 try:
     model = load_model()
@@ -43,6 +47,7 @@ try:
 except Exception as e:
     st.error(f"Model load failed: {e}")
     st.stop()
+
 num_cols = ["SeniorCitizen", "tenure", "MonthlyCharges", "TotalCharges"]
 cat_cols = [
     "gender", "Partner", "Dependents", "PhoneService", "MultipleLines",
@@ -50,7 +55,6 @@ cat_cols = [
     "TechSupport", "StreamingTV", "StreamingMovies", "Contract",
     "PaperlessBilling", "PaymentMethod"
 ]
-
 
 st.subheader("📝 Enter Customer Details")
 
@@ -87,7 +91,6 @@ with col3:
     monthly_charges = st.number_input("Monthly Charges", 0.0, 200.0, 70.0)
     total_charges = st.number_input("Total Charges", 0.0, 10000.0, 1000.0)
 
-
 if st.button("🎯 Predict Churn", type="primary", use_container_width=True):
     input_data = pd.DataFrame({
         "gender": [gender],
@@ -111,7 +114,6 @@ if st.button("🎯 Predict Churn", type="primary", use_container_width=True):
         "TotalCharges": [total_charges],
     })
 
-    
     prob = model.predict_proba(input_data)[0][1]
     pct = prob * 100
 
@@ -132,7 +134,6 @@ if st.button("🎯 Predict Churn", type="primary", use_container_width=True):
         else:
             st.write("This customer is likely to stay.")
 
-    
     st.markdown("---")
     st.subheader("🔍 Why this prediction?")
 
@@ -141,12 +142,10 @@ if st.button("🎯 Predict Churn", type="primary", use_container_width=True):
             X_transformed = model.named_steps["prep"].transform(input_data)
             shap_values = explainer.shap_values(X_transformed)
 
-            
             ohe = model.named_steps["prep"].named_transformers_["cat"]
             cat_names = ohe.get_feature_names_out(cat_cols)
             feature_names = num_cols + list(cat_names)
 
-            
             fig, ax = plt.subplots(figsize=(10, 6))
             shap.plots.waterfall(
                 shap.Explanation(
