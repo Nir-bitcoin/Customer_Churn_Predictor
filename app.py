@@ -1,4 +1,7 @@
-import streamlit as st
+import os
+os.environ["STREAMLIT_SERVER_PORT"] = os.environ.get("PORT", "8501")
+os.environ["STREAMLIT_SERVER_ADDRESS"] = "0.0.0.0"
+os.environ["STREAMLIT_SERVER_HEADLESS"] = "true"import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
